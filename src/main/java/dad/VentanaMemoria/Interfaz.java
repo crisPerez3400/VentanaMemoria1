@@ -46,7 +46,9 @@ public class Interfaz extends Application {
         root.getChildren().addAll(hboxRed, hboxGreen, hboxBlue);
 
         //LISTENERS
-        redSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+        //valueproperty obtiene la propiedad del valor del slider
+        //el listener "escucha" los cambios en el value, y se activa con los cambios  de este
+         redSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             updateBackground(root, redSlider, greenSlider, blueSlider);
         });
 
@@ -68,13 +70,15 @@ public class Interfaz extends Application {
 
     private Slider createColorSlider() {
         Slider slider = new Slider(0, 255, 0);
+                //valor minimo, maximo, inicial
+                //esta info la toma el valueproperty() del listener
 
         return slider;
     }
 
     //fondo
 
-    private void updateBackground(VBox root, Slider redSlider, Slider greenSlider, Slider blueSlider) {
+    private void updateBackground(VBox root,  Slider redSlider, Slider greenSlider, Slider blueSlider) {
         int red = (int) redSlider.getValue();
         int green = (int) greenSlider.getValue();
         int blue = (int) blueSlider.getValue();
